@@ -2,7 +2,7 @@ import Image from "next/image";
 
 function Music() {
   return (
-    <div className="w-full flex justify-center items-center mt-10 mb-1 ">
+    <div className="w-full flex justify-center items-center mt-10 mb-1 max-w-screen-2xl mx-auto">
       <div className="sm:-end-full md:w-[80%] sm:p-5 md:pl-5 bg-black sm:h-[100%] md:h-[400px] flex sm:flex-col md:flex-row sm:justify-start  md:justify-center sm:items-start md:items-center">
         <div className="sm:w-[100%] md:w-[50%]">
           <h3 className="text-green-500 font-bold ">Categories</h3>

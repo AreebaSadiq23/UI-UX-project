@@ -1,7 +1,7 @@
 import Image from "next/image";
 function About() {
   return (
-    <div id="about" className="w-full flex justify-center items-start">
+    <div id="about" className="w-full flex justify-center items-start max-w-screen-2xl mx-auto">
       <div className="sm:w-full md:w-[80%]  my-11 flex sm:flex-col md:flex-row justify-center items-start gap-x-5 gap-y-6">
         <div className="sm:w-full md:w-[60%] sm:p-8 md:p-0">
           <h1 className="sm:text-xl md:text-3xl  font-bold ">Our Story</h1>
@@ -18,7 +18,7 @@ function About() {
             ranging from consumer.
           </p>
         </div>
-        <div className="sm:w-full md:w-[600px]  cursor-pointer ">
+        <div className="sm:w-full md:w-[600px]  cursor-pointer">
           <Image
             src={"/about.jpg"}
             width={400}

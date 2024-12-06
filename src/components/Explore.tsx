@@ -5,7 +5,7 @@ import Image from "next/image";
 function FreshSales() {
   return (
     <main>
-      <div className="w-full flex justify-center items-center mt-10 mb-1">
+      <div className="w-full flex justify-center items-center mt-10 mb-1 max-w-screen-2xl mx-auto">
         <div className="w-[80%]">
           <div className="flex flex-col">
             <h3 className="text-red-500 font-bold border-l-8 border-red-400 pl-3 ml-1">
@@ -17,7 +17,6 @@ function FreshSales() {
               </h1>
             </div>
           </div>
-          {/* Update the card layout to use grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mt-5">
             {[
               {

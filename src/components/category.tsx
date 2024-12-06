@@ -9,7 +9,7 @@ import {
 
 function Category() {
   return (
-    <div className="w-full flex justify-center items-center mt-10 mb-1 ">
+    <div className="w-full flex justify-center items-center mt-10 mb-1 max-w-screen-2xl mx-auto">
       <div className="sm:w-full md:w-[80%]  border-b-2 border-neutral-100 pb-10">
         <div className="flex flex-col sm:pl-[6%] md:pl-0">
           <h3 className="text-red-500 font-bold border-l-8  border-red-400 pl-3 ml-1">

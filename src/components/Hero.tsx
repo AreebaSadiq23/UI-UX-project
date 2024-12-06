@@ -1,48 +1,77 @@
-import { Apple } from 'lucide-react';  
+import { FaApple } from "react-icons/fa";
 import Image from "next/image";
-import Link from 'next/link';
+import Link from "next/link";
 
 function Hero() {
-    return (
-        <div className="w-full flex justify-center items-center">
-            <div className="sm:w-full md:w-full lg:w-[80%] flex ">
-                {/* left side */}
-                <div className='border-r-2 border-neutral-100 p-10 sm:hidden md:block  pb-0  '>
-                    <ul>
-                        <li className='leading-loose hover:underline cursor-pointer'>Woman&apos;s Fashion</li>
-                        <li className='leading-loose hover:underline cursor-pointer'>Men&apos;s Fashion</li>
-                        <li className='leading-loose hover:underline cursor-pointer'>Electronics</li>
-                        <li className='leading-loose hover:underline cursor-pointer'>Home & Lifestyle</li>
-                        <li className='leading-loose hover:underline cursor-pointer'>Medicine</li>
-                        <li className='leading-loose hover:underline cursor-pointer'>Sports & Outdoor</li>
-                        <li className='leading-loose hover:underline cursor-pointer'>Baby&apos;s & Toys</li>
-                        <li className='leading-loose hover:underline cursor-pointer'>Groceries & Pets</li>
-                        <li className='leading-loose hover:underline cursor-pointer'>Health & Beauty</li>
-                    </ul>
-                </div>
-                {/* right side */}
-                <div className='sm:w-full md:w-[650px] lg:w-[770px] sm:ml-0 md:ml-0 lg:ml-3 sm:mt-0 md:mt-10 sm:h-[250] md:h-[280px] bg-black flex justify-between pt-6 '>
-                     {/* left side */}
-                     <div className='text-white sm:w-[140px] md:w-[200px] pt-4 ml-5'>
-                          {/* icon div */}
-                          <div className='flex gap-x-2 items-center'>
-                            <span> <Apple className="text-white sm:text-2xl md:text-4xl" /> </span>
-                            <span className='sm:text-[10px] md:text-xs'>iPhone 14 Series</span>
-                          </div>
-                          <h1 className='sm:text-md md:text-4xl font-bold my-5'>Up to 10% off Voucher</h1>
-                         <Link href={"#products"} className='underline underline-offset-4 hover:font-bold'>Shop Now -&gt;</Link>
-                     </div>
-
-                     {/* right side */}
-                     <div>
-                        <Image src={"/home.png"}
-                        width={350}
-                        height={200}
-                        alt='hero iamges'></Image>
-                     </div>
-                 </div>
-            </div>
+  return (
+    <div className="w-full flex justify-center items-center max-w-screen-2xl mx-auto px-4">
+      <div className="sm:w-full lg:w-[80%] flex flex-col lg:flex-row">
+        {/* Left Side */}
+        <div className="hidden lg:block border-r-2 border-neutral-100 p-5">
+          <ul>
+            <li className="leading-loose hover:underline cursor-pointer">
+              Woman&apos;s Fashion
+            </li>
+            <li className="leading-loose hover:underline cursor-pointer">
+              Men&apos;s Fashion
+            </li>
+            <li className="leading-loose hover:underline cursor-pointer">
+              Electronics
+            </li>
+            <li className="leading-loose hover:underline cursor-pointer">
+              Home & Lifestyle
+            </li>
+            <li className="leading-loose hover:underline cursor-pointer">
+              Medicine
+            </li>
+            <li className="leading-loose hover:underline cursor-pointer">
+              Sports & Outdoor
+            </li>
+            <li className="leading-loose hover:underline cursor-pointer">
+              Baby&apos;s & Toys
+            </li>
+            <li className="leading-loose hover:underline cursor-pointer">
+              Groceries & Pets
+            </li>
+            <li className="leading-loose hover:underline cursor-pointer">
+              Health & Beauty
+            </li>
+          </ul>
         </div>
-    )
+
+        {/* Right Side */}
+        <div className="sm:w-full lg:w-[770px] bg-black text-white flex flex-col-reverse lg:flex-row items-center lg:items-start justify-between p-6">
+          <div className="sm:w-full lg:w-[200px] pt-4 text-center lg:text-left">
+            <div className="flex gap-x-2 items-center justify-center lg:justify-start">
+              <FaApple className="text-white sm:text-2xl lg:text-4xl" />
+              <span className="sm:text-[10px] lg:text-xs">
+                iPhone 14 Series
+              </span>
+            </div>
+            <h1 className="sm:text-lg lg:text-4xl font-bold my-5">
+              Up to 10% off Voucher
+            </h1>
+            <Link
+              href={"#products"}
+              className="underline underline-offset-4 hover:font-bold"
+            >
+              Shop Now -&gt;
+            </Link>
+          </div>
+
+          <div className="w-full flex justify-center lg:w-auto">
+            <Image
+              src="/home.png"
+              width={350}
+              height={200}
+              alt="hero image"
+              className="sm:w-[250px] lg:w-[350px]"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }
+
 export default Hero;

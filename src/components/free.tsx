@@ -2,7 +2,7 @@ import { Truck, Headphones, CheckCircle } from 'lucide-react';
 
 export default function Freedelivery() {
     return (
-        <div className="w-full sm:h-[500px] lg:h-[300px] flex justify-center items-center">
+        <div className="w-full sm:h-[500px] lg:h-[300px] flex justify-center items-center max-w-screen-2xl mx-auto">
             <div className="sm:w-[100%] lg:w-[70%] sm:justify-center gap-y-4 sm:items-center flex sm:flex-col md:flex-col lg:flex-row lg:justify-evenly gap-x-4 ">
 
                 {/* box 1 */}
@@ -34,8 +34,6 @@ export default function Freedelivery() {
                         <p className='text-sm'>We return money within 30 days</p>
                     </div>
                 </div>
-
-                {/* boxes complete */}
             </div>
         </div>
     )
