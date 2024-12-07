@@ -1,115 +1,195 @@
-import { Heart, Eye, Star as LucideStar } from "lucide-react";
-import { FaStar } from "react-icons/fa";
+"use client";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
+import { FaHeart, FaEye, FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
-function FreshSales() {
+const Countdown = ({ targetDate }: { targetDate: Date }) => {
+  const [timeLeft, setTimeLeft] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  });
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = targetDate.getTime() - now;
+
+      if (distance > 0) {
+        setTimeLeft({
+          days: Math.floor(distance / (1000 * 60 * 60 * 24)),
+          hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+          minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
+          seconds: Math.floor((distance % (1000 * 60)) / 1000),
+        });
+      } else {
+        clearInterval(interval);
+      }
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [targetDate]);
+
   return (
-    <main>
-      <div className="w-full flex justify-center items-center mt-10 mb-1 max-w-screen-2xl mx-auto">
-        <div className="w-[80%]">
-          <div className="flex flex-col">
-            <h3 className="text-red-500 font-bold border-l-8  border-red-400 pl-3 ml-1">
-              Today&apos;s
-            </h3>
-            <div className="flex">
-              <h1 className="text-gray-800 font-bold sm:text-md md:text-3xl lg:text-3xl pt-4">
-                Fresh Sales
-              </h1>
-              <Image
-                src={"/freesh.jpg"}
-                width={200}
-                height={200}
-                className="ml-10 sm:hidden md:block"
-                alt="fresh sales"
-              />
-            </div>
-          </div>
-          <div className="flex sm:flex-col md:flex-row lg:flex-row justify-between mt-5 sm:flex-nowrap md:flex-wrap lg:flex-nowrap">
-            {[
-              {
-                image: "/gaming.png",
-                discount: "-40%",
-                title: "HAVIT HV-G92 Gamepad",
-                price: "$120",
-                originalPrice: "$160",
-                rating: 4,
-                reviews: "(88)",
-              },
-              {
-                image: "/keyboard.png",
-                discount: "-35%",
-                title: "AK-900 Wired Keyboard",
-                price: "$960",
-                originalPrice: "$1160",
-                rating: 4,
-                reviews: "(75)",
-              },
-              {
-                image: "/lcd.png",
-                discount: "-30%",
-                title: "IPS LCD Gaming Monitor",
-                price: "$370",
-                originalPrice: "$400",
-                rating: 5,
-                reviews: "(99)",
-              },
-              {
-                image: "/chair.png",
-                discount: "-25%",
-                title: "S-Series Comfort Chair",
-                price: "$375",
-                originalPrice: "$400",
-                rating: 4,
-                reviews: "(99)",
-              },
-            ].map((product, index) => (
-              <div key={index}>
-                <div className="group relative shadow-md bg-neutral-100 cursor-pointer sm:w-full md:w-[300px] lg:w-[260px] h-[240px] flex justify-center items-center">
-                  <Image
-                    src={product.image}
-                    width={150}
-                    height={100}
-                    alt={product.title}
-                  />
-                  <span className="bg-red-500 px-2 rounded-md text-white absolute top-0 left-0">
-                    {product.discount}
-                  </span>
-                  <span className="absolute top-1 right-1 text-red rounded-full">
-                    <Heart className="text-xl" />
-                  </span>
-                  <span className="absolute top-10 right-1 text-black rounded-full">
-                    <Eye className="text-xl" />
-                  </span>
-                  <button className="w-full absolute bottom-0 bg-black text-white px-4 py-2 rounded-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    Add to Cart
-                  </button>
-                </div>
-                <h1 className="font-bold font-sans pt-2">{product.title}</h1>
-                <span className="text-red-500 font-bold">{product.price}</span>
-                <span className="text-gray-400 font-bold line-through ml-2">
-                  {product.originalPrice}
-                </span>
-                <div className="flex space-x-1 ml-1 text-yellow-400 text-md pt-1">
-                  {[...Array(4)].map((_, i) => (
-                    <FaStar key={i} className="text-yellow-400 text-xl" />
-                  ))}
-                  <LucideStar className="text-yellow-300" size={20} />
-                  <span className="text-gray-400">{product.reviews}</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+    <div className="mx-auto max-w-screen-2xl flex gap-4 text-center">
+      <div>
+        <p className="text-2xl font-bold">{timeLeft.days.toString().padStart(2, "0")}</p>
+        <p className="text-sm text-gray-500">Days</p>
       </div>
-      <div className="w-full flex justify-center items-center mt-10">
-        <div className="w-[80%] flex justify-center border-b-2 border-neutral-100 pb-10">
-          <button className="bg-red-500 hover:bg-red-600 py-2 px-5 text-white rounded-sm">
-            View All Products
-          </button>
-        </div>
+      <div>
+        <p className="text-2xl font-bold">{timeLeft.hours.toString().padStart(2, "0")}</p>
+        <p className="text-sm text-gray-500">Hours</p>
       </div>
-    </main>
+      <div>
+        <p className="text-2xl font-bold">{timeLeft.minutes.toString().padStart(2, "0")}</p>
+        <p className="text-sm text-gray-500">Minutes</p>
+      </div>
+      <div>
+        <p className="text-2xl font-bold">{timeLeft.seconds.toString().padStart(2, "0")}</p>
+        <p className="text-sm text-gray-500">Seconds</p>
+      </div>
+    </div>
   );
-}
+};
 
-export default FreshSales;
+const FlashSales = () => {
+  const products = [
+    {
+      name: "HAVIT HV-G92 Gamepad",
+      price: 120,
+      discountPrice: 160,
+      image: "/gaming.png",
+      rating: 4.5,
+      reviews: 88,
+      discount: "-40%",
+      hasAddToCart: true,
+    },
+    {
+      name: "AK-900 Wired Keyboard",
+      price: 60,
+      discountPrice: 80,
+      image: "/keyboard.png",
+      rating: 4.0,
+      reviews: 77,
+      discount: "-35%",
+      hasAddToCart: false,
+    },
+    {
+      name: "IPS LCD Gaming Monitor",
+      price: 300,
+      discountPrice: 400,
+      image: "/lcd.png",
+      rating: 4.8,
+      reviews: 102,
+      discount: "-30%",
+      hasAddToCart: false,
+    },
+    {
+      name: "S-Series Comfort Chair",
+      price: 375,
+      discountPrice: 400,
+      image: "/chair.png",
+      rating: 4.3,
+      reviews: 99,
+      discount: "-25%",
+      hasAddToCart: false,
+    },
+    {
+      name: "S-Series Comfort Chair",
+      price: 375,
+      discountPrice: 400,
+      image: "/chair.png",
+      rating: 4.3,
+      reviews: 99,
+      discount: "-25%",
+      hasAddToCart: false,
+    },
+  ];
+
+  const targetDate = new Date();
+  targetDate.setDate(targetDate.getDate() + 1);
+
+  // State to track which card is clicked
+  const [visibleCard, setVisibleCard] = useState<number | null>(null);
+
+  return (
+    <div className="container mx-auto my-12 p-4 relative">
+      <div className="flex items-center gap-2 mb-2">
+        <div className="w-2 h-6 bg-red-500"></div>
+        <h2 className="text-red-500 font-semibold text-xl">Today&apos;s</h2>
+      </div>
+      <h1 className="text-4xl font-bold mb-6">Flash Sales</h1>
+
+      <Countdown targetDate={targetDate} />
+      <div className="absolute top-2 right-2 flex gap-2">
+        <button className="bg-white border border-gray-300 p-2 rounded-full shadow hover:bg-gray-100">
+          <FaArrowLeft className="text-gray-600" />
+        </button>
+        <button className="bg-white border border-gray-300 p-2 rounded-full shadow hover:bg-gray-100">
+          <FaArrowRight className="text-gray-600" />
+        </button>
+      </div>
+
+      <div className="flex gap-6 overflow-x-auto py-6">
+        {products.map((product, index) => (
+          <div
+            key={index}
+            onClick={() => setVisibleCard(visibleCard === index ? null : index)}
+            className="border rounded-lg shadow-md p-4 min-w-[250px] bg-white relative cursor-pointer"
+          >
+            <div className="absolute top-2 left-2 bg-red-500 text-white text-xs px-2 py-1 rounded-tr-lg rounded-bl-lg">
+              {product.discount}
+            </div>
+
+            <div className="relative">
+              <Image
+                src={product.image}
+                alt={product.name}
+                className="w-[172px] h-[152px] object-cover rounded-md"
+                width={172}
+                height={152}
+              />
+              <div className="absolute top-2 right-2 flex flex-col gap-2">
+                <FaEye className="text-gray-600 text-lg cursor-pointer" title="View" />
+                <FaHeart className="text-gray-600 text-lg cursor-pointer" title="Wishlist" />
+              </div>
+            </div>
+
+            {/* Product Info */}
+            <h3 className="text-lg font-semibold mt-2">{product.name}</h3>
+            <p className="text-red-500 font-bold">${product.price}</p>
+            <p className="line-through text-gray-400">${product.discountPrice}</p>
+
+            <div className="flex items-center mt-2">
+              <span className="text-yellow-500">★</span>
+              <span className="text-yellow-500">★</span>
+              <span className="text-yellow-500">★</span>
+              <span className="text-yellow-500">★</span>
+              <span className="text-gray-300">★</span>
+              <span className="text-sm text-gray-500 ml-2">
+                ({product.reviews} reviews)
+              </span>
+            </div>
+
+            {/* Add to Cart Button */}
+            {visibleCard === index && (
+              <button className="w-full bg-black text-white px-4 py-2 rounded-sm mt-4">
+                Add to Cart
+              </button>
+            )}
+          </div>
+        ))}
+      </div>
+
+      {/* View All Products Button */}
+      <div className="text-center mt-6">
+        <button className="bg-red-500 text-white px-6 py-2 font-medium rounded hover:bg-red-600 transition">
+          View All Products
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default FlashSales;
