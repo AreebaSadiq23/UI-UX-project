@@ -1,4 +1,5 @@
 import { FC } from "react";
+import Link from "next/link"; // Import Link from next/link
 import { Search, Heart, ShoppingCart } from "lucide-react";
 
 const Header: FC = () => {
@@ -10,16 +11,16 @@ const Header: FC = () => {
         <nav>
           <ul className="flex space-x-8">
             <li className="text-gray-800 hover:underline">
-              <a href="/">Home</a>
+              <Link href="/">Home</Link> {/* Use Link */}
             </li>
             <li className="text-gray-800 hover:underline">
-              <a href="/contact">Contact</a>
+              <Link href="/contact">Contact</Link>
             </li>
             <li className="text-gray-800 hover:underline">
-              <a href="/about">About</a>
+              <Link href="/about">About</Link>
             </li>
             <li className="text-gray-800 hover:underline">
-              <a href="/signup">Sign Up</a>
+              <Link href="/signup">Sign Up</Link>
             </li>
           </ul>
         </nav>
